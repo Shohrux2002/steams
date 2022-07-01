@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import StreamCreateContainer from "../containers/StreamCreateContainer";
 import Header from "./Header";
 import StreamCreate from "./spteams/StreamCreate";
 import StreamDelete from "./spteams/StreamDelete";
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <StreamCreateContainer />
       <BrowserRouter>
         <div>
           <Route path="/" exact component={StreamList} />

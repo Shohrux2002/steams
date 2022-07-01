@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleAuthContainer from "../containers/GoogleAuthContainer";
 
-import RegisterPopup from "./RegiterPopup";
+import RegisterPopupContainer from "./../containers/registerPopup";
 // import FacebookAuth from "./FacebookAuth";
 
 const Header = () => {
@@ -15,7 +15,7 @@ const Header = () => {
           <a className="item"> </a>
         </div>
 
-        <RegisterPopup />
+        {/* <RegisterPopupContainer   /> */}
       </div>
     </>
   );

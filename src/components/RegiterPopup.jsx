@@ -2,21 +2,33 @@ import "antd/dist/antd.min.css";
 import "../style.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import FacebookAuht from "./FacebookAuth";
-import GitHubAuht from "./GitHubAuth";
-import NumberAuth from "./NumberAuth";
-import GoogleAuthContainer from "../containers/GoogleAuthContainer";
+// import FacebookAuht from "./FacebookAuth";
+// import GitHubAuht from "./GitHubAuth";
+// import NumberAuth from "./NumberAuth";
+// import GoogleAuthContainer from "../containers/GoogleAuthContainer";
+import { useState } from "react";
+import store from "../redux/store";
 
-const RegisterPopup = () => {
+const RegisterPopup = (props) => {
+  const [userpaswort, setPaswort] = useState();
+  const [useremail, setemail] = useState();
+
+  const getPaswort = (e) => {
+    setPaswort(e.target.value);
+  };
+  const getEmail = (e) => {
+    setemail(e.target.value);
+  };
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
   };
 
   return (
     <Form
-      onSubmitCapture={(e) => {
-        e.preventDefault();
-      }}
+      // onSubmitCapture={(e) => {
+      //   e.preventDefault();
+      // }}
+
       name="normal_login"
       className="register-popup login-form"
       initialValues={{
@@ -34,6 +46,7 @@ const RegisterPopup = () => {
         ]}
       >
         <Input
+          onChange={getEmail}
           prefix={<UserOutlined className="site-form-item-icon" />}
           placeholder="Username"
         />
@@ -48,6 +61,7 @@ const RegisterPopup = () => {
         ]}
       >
         <Input
+          onChange={getPaswort}
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
@@ -63,13 +77,22 @@ const RegisterPopup = () => {
         </a>
       </Form.Item>
       <div className="aut-social">
-        <GoogleAuthContainer />
+        {/* <GoogleAuthContainer />
         <FacebookAuht />
         <GitHubAuht />
-        <NumberAuth />
+        <NumberAuth /> */}
       </div>
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            props.formDataAction(userpaswort, useremail);
+            console.log(store.getState());
+          }}
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
+        >
           Log in
         </Button>
         Or <a href="">register now!</a>
